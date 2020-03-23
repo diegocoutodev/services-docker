@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  verdaccio:
+    container_name: verdaccio
+    user: "${VERDACCIO_USER_UID}:${VERDACCIO_USER_UID}"
+    networks:
+      - node-network
+    image: verdaccio/verdaccio
+    ports: 
+      - ${VERDACCIO_PORT}:4873
+    environment:
+      - VERDACCIO_USER_UID:${VERDACCIO_USER_UID}
+      - VERDACCIO_PROTOCOL:${VERDACCIO_PROTOCOL}
+    volumes:
+      - "./storage:/verdaccio/storage"
+      - "./config:/verdaccio/conf"
+      - "./plugins:/verdaccio/plugins"  
+networks:
+  node-network:
+    driver: bridge
