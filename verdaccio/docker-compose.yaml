@@ -3,6 +3,7 @@ services:
   verdaccio:
     container_name: verdaccio
     user: "${VERDACCIO_USER_UID}:${VERDACCIO_USER_UID}"
+    restart: always
     networks:
       - node-network
     image: verdaccio/verdaccio
